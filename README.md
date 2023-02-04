@@ -1,2 +1,2 @@
-# tweetralize
-spit hackathon problem statement 7:
+# Tweetralize
+SPIT Hackathon Problem Statement 7:
