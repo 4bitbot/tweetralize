@@ -10,8 +10,7 @@ import "@openzeppelin/contracts/utils/math/SafeMath.sol";
 // import "@openzeppelin/contracts/utils/Counters.sol";
 import "hardhat/console.sol";
 
-contract Dtweet is ERC721URIStorage,
-    Ownable{
+contract Dtweet{
     // address payable public owner;
     uint totalDtweets;
     struct DtweetContent{
@@ -21,9 +20,7 @@ contract Dtweet is ERC721URIStorage,
         // img
     }
 
-    
     mapping(address => DtweetContent) public dtweets;
-
 
     using Counters for Counters.Counter;
     Counters.Counter private _tokenIds; 
@@ -37,9 +34,9 @@ contract Dtweet is ERC721URIStorage,
 
     function dtweet(string memory _message) public {
         totalDtweets += 1;
-        // dtweets[msg.sender]=DtweetContent(_message,now);
+        dtweets[msg.sender]=DtweetContent(_message,block.timestamp);
         console.log("%s dtweeted %s", msg.sender, _message);
-        dtweetContents.push(DtweetContent(msg.sender, _message, block.timestamp));
+        // dtweetContents.push(DtweetContent(msg.sender, _message, block.timestamp));
     }
 
     function getAllDtweets() public view returns (DtweetContent[] memory) {
@@ -50,4 +47,6 @@ contract Dtweet is ERC721URIStorage,
         console.log("We have %d total dtweets!", totalDtweets);
         return totalDtweets;
     }
+
+
 }
